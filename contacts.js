@@ -32,11 +32,11 @@ async function removeContact(contactId) {
     const contacts = JSON.parse(data);
     const removedContactIndex = contacts.findIndex(contact => contact.id === contactId);
     if (removedContactIndex === -1) {
-      return null; // Контакт не знайдено, повертаємо null
+      return null; 
     }
     const [removedContact] = contacts.splice(removedContactIndex, 1);
     await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
-    return removedContact; // Повертаємо видалений контакт
+    return removedContact;
   } catch (error) {
     throw error;
   }

@@ -2,11 +2,11 @@ import { program } from "commander";
 import { listContacts, getContactById, removeContact, addContact } from "./contacts.js";
 
 program
-  .option("-a, --action <type>", "виберіть дію")
-  .option("-i, --id <type>", "ідентифікатор користувача")
-  .option("-n, --name <type>", "ім'я користувача")
-  .option("-e, --email <type>", "електронна адреса користувача")
-  .option("-p, --phone <type>", "телефон користувача");
+  .option("-a, --action <type>", "choose action")
+  .option("-i, --id <type>", "user id")
+  .option("-n, --name <type>", "user name")
+  .option("-e, --email <type>", "user email")
+  .option("-p, --phone <type>", "user phone");
 
 program.parse();
 
