@@ -1,5 +1,7 @@
-import { program } from "commander";
-import { listContacts, getContactById, removeContact, addContact } from "./contacts.js";
+const { Command } = require('commander');
+const { listContacts, getContactById, removeContact, addContact } = require('./contacts');
+
+const program = new Command();
 
 program
   .option("-a, --action <type>", "choose action")
@@ -8,32 +10,32 @@ program
   .option("-e, --email <type>", "user email")
   .option("-p, --phone <type>", "user phone");
 
-program.parse();
+program.parse(process.argv);
 
-const options = program.opts();
-
-async function invokeAction({ action, id, name, email, phone }) {
+async function invokeAction() {
+  const options = program.opts();
+  const action = options.action;
+  
   switch (action) {
-    case "list":
+    case 'list':
       const contacts = await listContacts();
       console.table(contacts);
       break;
-
-    case "get":
-      console.log(await getContactById(id));
+    case 'get':
+      const contact = await getContactById(options.id);
+      console.log(contact);
       break;
-
-    case "add":
-      console.log(await addContact(name, email, phone));
+    case 'add':
+      const newContact = await addContact(options.name, options.email, options.phone);
+      console.log(newContact);
       break;
-
-    case "remove":
-      console.log(await removeContact(id));
+    case 'remove':
+      const removedContact = await removeContact(options.id);
+      console.log(removedContact);
       break;
-
     default:
-      console.warn("\x1B[31m Невідомий тип дії!");
+      console.warn('\x1b[31m', 'Unknown action type!');
   }
 }
 
-invokeAction(options);
+invokeAction();
