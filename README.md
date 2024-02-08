@@ -6,7 +6,7 @@ node index.js -a list
 
 ![Screenshot_93](https://github.com/Kouk02/goit-node-cli/assets/126501162/2ec8b7f7-b7a5-4442-95e7-962f1b35adc0)
 
->>>>>>> e793ca3e7a8acaf4b343feffb25489a077c858e8
+
 
 
 ```bash
@@ -31,4 +31,4 @@ node index.js -a remove -i qdggE76Jtbfd9eWJHrssH
 
 
 ![Screenshot_94](https://github.com/Kouk02/goit-node-cli/assets/126501162/924a7c57-ab02-40fa-aa8e-f03c3eaebefb)
->>>>>>> e793ca3e7a8acaf4b343feffb25489a077c858e8
+
