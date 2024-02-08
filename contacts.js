@@ -30,9 +30,13 @@ async function removeContact(contactId) {
   try {
     const data = await fs.readFile(contactsPath, 'utf-8');
     const contacts = JSON.parse(data);
-    const updatedContacts = contacts.filter(contact => contact.id !== contactId);
-    await fs.writeFile(contactsPath, JSON.stringify(updatedContacts, null, 2));
-    return updatedContacts.find(contact => contact.id === contactId) || null;
+    const removedContactIndex = contacts.findIndex(contact => contact.id === contactId);
+    if (removedContactIndex === -1) {
+      return null; // Контакт не знайдено, повертаємо null
+    }
+    const [removedContact] = contacts.splice(removedContactIndex, 1);
+    await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+    return removedContact; // Повертаємо видалений контакт
   } catch (error) {
     throw error;
   }

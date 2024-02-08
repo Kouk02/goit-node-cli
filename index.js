@@ -2,11 +2,11 @@ import { program } from "commander";
 import { listContacts, getContactById, removeContact, addContact } from "./contacts.js";
 
 program
-  .option("-a, --action <type>", "choose action")
-  .option("-i, --id <type>", "user id")
-  .option("-n, --name <type>", "user name")
-  .option("-e, --email <type>", "user email")
-  .option("-p, --phone <type>", "user phone");
+  .option("-a, --action <type>", "виберіть дію")
+  .option("-i, --id <type>", "ідентифікатор користувача")
+  .option("-n, --name <type>", "ім'я користувача")
+  .option("-e, --email <type>", "електронна адреса користувача")
+  .option("-p, --phone <type>", "телефон користувача");
 
 program.parse();
 
@@ -15,7 +15,8 @@ const options = program.opts();
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      console.log(await listContacts());
+      const contacts = await listContacts();
+      console.table(contacts);
       break;
 
     case "get":
@@ -31,7 +32,7 @@ async function invokeAction({ action, id, name, email, phone }) {
       break;
 
     default:
-      console.warn("\x1B[31m Unknown action type!");
+      console.warn("\x1B[31m Невідомий тип дії!");
   }
 }
 
